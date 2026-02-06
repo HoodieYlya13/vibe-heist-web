@@ -57,3 +57,5 @@ next-env.d.ts
 
 # Editor-based HTTP Client requests
 /httpRequests/
+
+/public/play/
