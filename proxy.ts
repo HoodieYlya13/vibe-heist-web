@@ -13,7 +13,7 @@ export function proxy(request: NextRequest) {
   )
     return NextResponse.next();
 
-  url.pathname = `/play${!process.env.NODE_ENV && "/index.html"}`;
+  url.pathname = `/play${!process.env.NODE_ENV ? "/index.html" : ""}`;
   return NextResponse.redirect(url);
 }
 
