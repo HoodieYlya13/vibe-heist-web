@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vibe Heist - Web Portal 🌐
 
-## Getting Started
+**Status:** 🚧 In Active Development
 
-First, run the development server:
+Welcome to the public web portal for **Vibe Heist**, an experimental high-fidelity open-world crime simulation running entirely in the browser.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+This repository handles the **Authentication**, **Launcher UI**, and **Asset Delivery** for the game.
+
+## 🏗️ Architecture & Code Protection
+
+This project utilizes a unique **"Injected Client" architecture** to maintain open-source transparency for the engine while protecting the proprietary game logic.
+
+### The "Split-Repo" Strategy
+
+The application is composed of three distinct layers during the CI/CD pipeline:
+
+1. **The Engine (Public)**: A generic Rust/WASM physics simulation (`/sim`).
+2. **The Shell (Public)**: This Next.js repository, handling UI and Auth.
+3. **The Game Client (Private)**: The actual gameplay code, assets, and missions.
+
+### 🛡️ How it builds
+
+When deployed to Vercel, a custom build pipeline executes the following security flow:
+
+```mermaid
+graph TD
+    A[Private Monorepo] -->|1. Compile| B(Rust Engine .wasm)
+    A -->|2. Transpile| C(Game Client .js)
+    B --> D[Integration Layer]
+    C --> D
+    D -->|3. Inject| E[Next.js Public Folder]
+    E -->|4. Deploy| F[Vercel Edge Network]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Result:** The public can view the website code and the physics engine source, but the specific game logic (The "Heist" mechanics) is injected only at build time.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> **Security Note:** The raw TypeScript source code for the game logic never leaves the private repository, appearing in the browser only as minified, compiled JavaScript bundles.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Tech Stack
 
-## Learn More
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Game Runtime**: Babylon.js + WebAssembly (Rust)
 
-To learn more about Next.js, take a look at the following resources:
+## 🎮 Play the Greybox
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The current deployment features a "Greybox" technical demo, showcasing the Rust-Rapier physics integration without final assets.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[Link to Live Demo] (Coming Soon)
