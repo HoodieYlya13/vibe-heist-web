@@ -38,10 +38,10 @@ graph TD
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 16 (App Router)
+- **Framework**: Next.js 16
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Game Runtime**: Babylon.js + WebAssembly (Rust)
+- **Game Runtime**: Babylon.js (WebGPU) + WebAssembly (Rust)
 
 ## 🎮 Play the Greybox
 

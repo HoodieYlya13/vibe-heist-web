@@ -8,8 +8,8 @@ export default function Home() {
       </h1>
       <p className="max-w-2xl text-lg text-zinc-600 dark:text-zinc-400">
         The official web portal and launcher for Vibe Heist. Built with Next.js
-        16 to serve as the secure container for the WASM-based open-world
-        simulation. (In Development)
+        16 to serve as the secure container for the high-fidelity WebGPU & WASM
+        open-world simulation. (In Development)
       </p>
       <Link
         href={`/play${process.env.NODE_ENV === "production" ? "" : "/index.html"}`}
