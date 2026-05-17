@@ -47,6 +47,4 @@ graph TD
 
 The current deployment features a "Greybox" technical demo, showcasing the Rust-Rapier physics integration without final assets.
 
-```markdown
-[**Play the Live Demo**](https://vibe-heist.vercel.app)
-```
+[**Play the Live Demo**](https://vibe-heist.hy13dev.com)
